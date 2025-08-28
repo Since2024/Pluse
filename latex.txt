@@ -1,0 +1,219 @@
+\documentclass[12pt]{report}
+
+% ----------------- Essential Packages -----------------
+\usepackage{graphicx}   % Figures
+\usepackage{float}      % Better float handling
+\usepackage{newtxtext,newtxmath} % Times New Roman font
+\usepackage{setspace}   % Line spacing
+\usepackage{titlesec}   % Heading style
+\usepackage{tocloft}    % TOC customization
+\usepackage[top=1in, left=1.5in, bottom=1in, right=1.5in]{geometry} % Equal 1.5in margins
+\usepackage{microtype}  % Better typography
+\usepackage[labelfont=bf,font=bf]{caption} % Caption styling
+
+% Load hyperref last with simplified options
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=green]{hyperref}
+
+% ----------------- Line & Paragraph Style -----------------
+\onehalfspacing
+\setlength{\parindent}{0pt}        % No paragraph indent
+\setlength{\parskip}{0.5em}        % Space between paragraphs
+
+% ----------------- Simplified TOC Customization -----------------
+\renewcommand{\contentsname}{} % Remove default "Table of Contents" title
+\renewcommand{\cftchapaftersnum}{.}
+
+\renewcommand{\cftsecdotsep}{10000}
+\renewcommand{\cftsubsecdotsep}{10000}
+
+
+% Adjust TOC spacing
+\setlength{\cftbeforetoctitleskip}{0pt}
+\setlength{\cftaftertoctitleskip}{20pt}
+\setlength{\cftbeforechapskip}{10pt}
+\setlength{\cftbeforesecskip}{6pt}
+\setlength{\cftbeforesubsecskip}{4pt}
+
+% Adjust indentation
+\setlength{\cftchapindent}{0pt}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{15pt}
+
+% ----------------- Chapter/Section Formatting -----------------
+\titleformat{\chapter}[hang]
+  {\centering\bfseries\fontsize{16pt}{18pt}\selectfont}
+  {\thechapter.}{1em}{}
+\titlespacing*{\chapter}{0pt}{20pt}{10pt}
+
+\titleformat{\section}[hang]
+  {\bfseries\fontsize{14pt}{16pt}\selectfont}
+  {\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+
+\titleformat{\subsection}[hang]
+  {\bfseries\fontsize{12pt}{14pt}\selectfont}
+  {\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{10pt}{4pt}
+
+% ----------------- Captions -----------------
+\captionsetup{justification=centering, labelsep=period}
+
+% ----------------- Title Info -----------------
+\title{Auto Form Fillup App}
+\author{}
+\date{}
+
+\begin{document}
+
+% ----------------- Title Page -----------------
+\thispagestyle{empty}
+\begin{center}
+    \includegraphics[width=3cm]{logo.png} \\[1cm]
+    
+    \Large \textbf{Tribhuvan University} \\[-0.3cm]
+    \Large Faculty of Humanities and Social Science \\[1cm]
+    
+    \large \textbf{Auto Form Fillup App} \\[1cm]
+    \textbf{A PROJECT PROPOSAL} \\[1cm]
+    
+    \large \textbf{Submitted to}  \\[-0.3cm]
+    Department of Computer Application \\[-0.3cm]
+    Butwal Kalika Campus \\[1cm]
+    
+    \textbf{In partial fulfillment of the requirements for the} \\[-0.3cm]
+    \textbf{Bachelors in Computer Application} \\[1.2cm]
+    
+    \large \textbf{Submitted by:}  \\[0cm]
+    \textbf{Hasan Gaha} \\[1cm]
+\end{center}
+\newpage
+
+% ----------------- Table of Contents -----------------
+\thispagestyle{plain}
+
+% Manual Table of Contents title
+\begin{center}
+    \bfseries\Large TABLE OF CONTENTS
+    \vspace{20pt}
+\end{center}
+
+% Start the actual table of contents
+\tableofcontents
+\newpage
+
+% ----------------- Start Arabic Page Numbering -----------------
+\pagenumbering{arabic}
+
+% ----------------- Chapters -----------------
+\chapter{Introduction}
+In Nepal, government offices such as taxation departments, land management authorities, and various administrative bodies traditionally rely on manual form-filling processes. These forms are essential for citizen services, legal documentation, and public record maintenance. However, the current manual approach is fraught with difficulties: it is time-consuming, labor-intensive, and highly prone to human errors such as mistyping, missing data, or incorrect entries. Errors in crucial forms can lead to delays in service delivery, legal complications, and general inefficiency.
+
+With rapid advancements in automation and digital technologies, numerous governments worldwide have started adopting digital workflows to enhance their public service delivery. Automating form filling is a pivotal step toward achieving this modernization. By harnessing technologies such as Optical Character Recognition (OCR), database management, and PDF generation, it is feasible to transform bulky manual processes into streamlined automated pipelines.
+
+The Auto Form Fill-Up Application seeks to digitize and automate the end-to-end lifecycle of government form handling. This includes extraction of information either through manual entry or scanning physical forms, systematic data validation, precise placement of data into official templates, and storage in a centralized relational database. The system will support mass processing of forms, generation of accurately filled forms in PDF format, and provide a user-friendly interface optimized for government office staff with minimal technical expertise. The application is intended as a viable prototype demonstrating how Nepal's bureaucratic processes can be made more efficient, secure, and transparent through technology.
+
+\chapter{Problem Statement}
+Government offices in Nepal face numerous challenges due to the reliance on manual form filling:
+
+\begin{itemize}
+\item High error rate: Human data entry is susceptible to spelling mistakes, numerical errors, omissions, and inconsistencies.
+\item Slow processing time: Bulk submissions lead to long queues; staff must manually extract data, fill out forms, and cross-check records.
+\item Lack of central data management: Paper-based forms or isolated documents make storage, retrieval, and updates difficult.
+\item Limited scalability: The manual system struggles to handle large volumes during peak periods.
+\item Inefficient record keeping: Updating or correcting records is cumbersome, limiting responsiveness.
+\end{itemize}
+
+These issues create bottlenecks that affect both government productivity and citizen experience. To resolve these, there is a critical need for a comprehensive digital solution that automates form filling, maintains a centralized database, and improves accuracy and turnaround time with minimum disruption to current workflows.
+
+\chapter{Objectives}
+The overarching goal of this project is to develop an automated system that modernizes government form processing. Specific objectives include:
+
+\begin{itemize}
+\item Develop a robust Python-based application that automates form filling.
+\item Implement OCR (pytesseract) to detect and extract information directly from scanned forms.
+\item Design flexible, JSON-based form templates to handle different government form layouts.
+\item Integrate a relational database (MySQL) for CRUD operations and data management.
+\item Generate accurate, printable PDFs faithful to government templates.
+\item Provide a user-friendly interface suitable for non-technical staff.
+\item Demonstrate a prototype system to government offices and gather feedback.
+\end{itemize}
+
+\chapter{Literature Review}
+Form digitization and automation have been widely explored in recent research to improve efficiency in government and business processes. Studies highlight that manual data entry in government offices often leads to errors, delays, and inefficiency (Shrestha \& Shakya, 2021). Optical Character Recognition (OCR) technologies like Tesseract have been successfully applied in form processing, enabling accurate text extraction from scanned images (Smith, 2007). Furthermore, PDF generation and database connectivity are common approaches for storing and retrieving structured data (Zhu et., 2020). Prior research also emphasizes the importance of integrating such systems with user-friendly interfaces to ensure adoption in real-world offices (Koirala \& Pandey, 2019). Building on these findings, this project leverages OCR, automated form filling, and MySQL database integration to provide a practical solution tailored to Nepali government offices.
+
+\chapter{Methodology}
+\section{Requirement Identification}
+\subsection{Study of Existing System}
+At present, government offices in Nepal such as municipal and sub-metropolitan offices rely heavily on manual processes for form handling, particularly in areas like business tax registration and land/sampati tax records. Staff and citizens must fill out paper-based forms by hand, which are then manually verified, entered into digital registers, or archived as physical records. This manual workflow is slow, error-prone, and resource-intensive, often leading to mistakes in data entry, delays in service delivery, and difficulties in long-term record management. While some offices have introduced basic digital systems for record-keeping, there is still no automated solution for directly extracting data from scanned forms and generating clean, structured, and digitally stored outputs. This creates inefficiencies, increases workloads for staff, and reduces overall transparency and accessibility of services.
+
+\subsection{Requirement Collection}
+The requirement collection phase focuses on identifying what the system must achieve and how it should perform. This involves analyzing the workflow of government offices, observing challenges in the current manual process, and gathering user needs from staff and stakeholders. The goal is to ensure the proposed Auto Form Fill-up system is practical, reliable, and meets the needs of both users and institutions.
+
+\textbf{Functional Requirements:}
+The system must allow users to scan or upload government-issued forms (such as business tax and land/sampati tax forms) and automatically extract text data using OCR. Extracted data should be accurately mapped into structured digital templates defined in JSON format. The system should provide options for manual data entry or overriding OCR results in case of inaccuracies, ensuring correctness of the final output. It must generate filled digital forms in PDF format, exportable for printing or electronic submission. The application should also connect to a MySQL database to perform CRUD operations—storing form records, updating information, retrieving past entries, and deleting outdated data. Additionally, the system should support scalability, making it possible to expand and handle new government forms in the future.
+
+\textbf{Non-Functional Requirements:}
+The application must maintain high OCR accuracy to minimize errors in critical government-related data processing. It should offer a simple, user-friendly interface so that office staff with minimal technical skills can operate it effectively. The system should emphasize security and privacy, safeguarding sensitive personal and financial details from unauthorized access. Robust error handling must be in place to ensure that system failures or OCR inaccuracies do not disrupt workflow. Performance should be optimized so the software runs smoothly on standard office computers without requiring specialized hardware. Scalability, reliability, and maintainability are also key—ensuring that the system can be expanded, supported, and updated over time. Finally, backup mechanisms and data logging must be implemented to guarantee data integrity and accountability during long-term use.
+
+\section{Feasibility Study}
+\subsection{Technical Feasibility}
+The proposed Auto Form Fill-up system is technically feasible because it will be built using Python, which is widely supported and equipped with powerful libraries such as OpenCV for image processing, Tesseract OCR for text extraction, and ReportLab or related tools for PDF generation. The system will rely on MySQL for database connectivity, which is open-source, reliable, and well-suited for handling structured form data. These technologies are cross-platform, ensuring the application can run on standard office computers without requiring specialized hardware. The project is also manageable within the available timeframe since all required tools and frameworks are open-source and well-documented, enabling effective learning and implementation.
+
+\subsection{Operational Feasibility}
+From an operational perspective, the system is designed to simplify and speed up form processing tasks in government offices. Currently, staff manually read, interpret, and transfer information from paper forms into records, which is time-consuming and prone to error. The proposed system reduces this burden by automating OCR-based data extraction and digital form filling, significantly improving productivity. Minimal training will be needed for office staff, as the interface will be kept simple and intuitive. The ability to override extracted data ensures that human operators remain in control, addressing trust and usability concerns. By aligning with the real workflow of sub-metropolitan offices, the system is highly operable in practice.
+
+\subsection{Economic Feasibility}
+The economic feasibility is strong because the system relies on open-source tools and requires no costly proprietary software licenses. Development can be achieved with minimal financial investment since Python, Tesseract, MySQL, and PDF generation libraries are free. The system is intended to run on existing office hardware, avoiding additional infrastructure costs. Moreover, the efficiency gained by reducing manual data entry will save staff time and lower operational costs in the long run. Even with initial development and training, the return on investment will be significant, making the system economically viable for government offices with limited budgets.
+
+\section{High-Level Design of System}
+\begin{itemize}
+\item \textbf{Data Input:} Manual entry or scanned upload.
+\item \textbf{OCR Extraction:} Pytesseract extracts text from predefined fields.
+\item \textbf{Data Validation:} Template rules check accuracy.
+\item \textbf{Template Mapping:} JSON config ensures proper placement.
+\item \textbf{Database:} MySQL handles CRUD operations.
+\item \textbf{PDF Generation:} ReportLab outputs government-style forms.
+\item \textbf{User Interaction:} Edit/view/search stored records.
+\item \textbf{Final Output:} Print-ready PDFs for submission.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Untitled diagram _ Mermaid Chart-2025-08-21-093044.png}
+    \caption{System Flowchart of Auto Form Fill-Up App}
+\end{figure}
+
+\chapter{Gantt Chart}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{qw.png}
+    \caption{Gantt chart showing project tasks and timeline.}
+\end{figure}
+
+\chapter{Expected Outcome}
+The expected outcome of this project is the successful development of a fully functional Auto Form Fill-up application capable of digitizing government forms with accuracy and efficiency. The system will be able to scan or upload form images, extract relevant text fields using OCR, validate the extracted data, and automatically generate digitally filled forms in PDF format. A database integration with MySQL will ensure that records are stored securely and can be easily retrieved, searched, and updated through CRUD operations. For government offices, the system will reduce manual data entry time, minimize human errors, and improve service delivery. For users, it will provide a faster, more reliable, and transparent process for form handling. The project will demonstrate the feasibility of deploying AI-powered automation tools in Nepal's public administration sector and serve as a prototype for scaling to other government offices and form types in the future.
+
+Upon successful completion, the project will deliver:
+\begin{itemize}
+\item A fully operational Auto Form Fill-Up Application that automates form entry and generation.
+\item Seamless MySQL integration for CRUD operations.
+\item Accurate PDF outputs conforming to government templates.
+\item OCR-powered module reducing manual effort.
+\item User-friendly interface for non-technical staff.
+\item Scalable system adaptable for multiple government agencies.
+\end{itemize}
+
+% ----------------- References -----------------
+\begin{thebibliography}{9}
+\bibitem{bagaria2024}
+Bagaria, S., Irene, S., Harikrishnan, V., \& Elakia, M. (2024). A Novel Implementation of Marksheet Parser Using PaddleOCR. ArXiv. \url{https://arxiv.org/abs/2407.11985}
+
+\bibitem{povolotskiy2018}
+Povolotskiy, A., \& Tropin, D. (2018). Dynamic Programming Approach to Template-based OCR. ArXiv. \url{https://arxiv.org/abs/1812.07933}
+
+\bibitem{sebastian2024}
+Sebastian, G. P., \& Musthafa, T. (2024). Automated Form Filling Using OCR and Machine Learning for Enhanced Data Accuracy. IJRAW. \url{https://academicjournal.ijraw.com/archive/y2024/v3/i6/mJune/Automated%20Form%20Filling%20Using%20OCR%20and%20Machine%20Learning%20for%20Enhanced%20Data%20Accuracy%20and%20Efficiency}
+\bibitem{dhakal2019}
+Dhakal, S., Munikar, R., \& Dahal, P. (2019). One-Shot Template Matching for Automatic Document Data Capture. ArXiv. \url{https://arxiv.org/abs/1910.10037}
+\end{thebibliography}
+\end{document}
