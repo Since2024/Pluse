@@ -2,7 +2,14 @@
 using namespace std;
 
 int main() {
-    cout << "This is fun." << endl;
-    return 0;
+    int n;
+    cout << "Enter a number: ";
+    cin >> n;
 
+    if (n > 0) {
+        cout << n << " is a natural number." << endl;
+    } else {
+        cout << n << " is not a natural number." << endl;
+    }
+return 0;
 }
