@@ -3,6 +3,9 @@
 
 using namespace std;
 
+Color green = {173, 204, 96, 255};
+Color darkGreen = {43, 51, 24, 255};
+
 int main () {
 
     cout<<"Starting the game..."<<endl;
@@ -12,6 +15,9 @@ int main () {
     while(WindowShouldClose() == fasle)
     {
         BeginDrawing();
+
+        //DRawing 
+        ClearBackground(green);
 
         EndDrawing();
     }
