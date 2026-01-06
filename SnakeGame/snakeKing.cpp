@@ -18,6 +18,15 @@ class Food {
     // Vector2 is a raylib type that stores an X and a Y value
     // Here, we set the food to be at column 5 and row 6 on the grid
     Vector2 position = {5, 6};
+    Texture2D texture;
+
+    Food()
+    {
+        Image image = LoadImage("food.png");
+        texture = LoadTextureFromImage(image);
+        UnloadImage(image); 
+    
+    }
 
     // The function that draws the food on the screen
     void Draw()
