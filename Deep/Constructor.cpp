@@ -28,6 +28,10 @@ class Cat
 int main ()
 {
     Cat cat1;
+
+    cout << "Cat 1 ..." << endl;
+    cat1.print_cat();
+    cout << endl;
     
 
     return 0;
