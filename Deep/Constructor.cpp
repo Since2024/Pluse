@@ -24,7 +24,7 @@ class Cat
         
     }
          
-}
+};
 int main ()
 {
     Cat cat1;
