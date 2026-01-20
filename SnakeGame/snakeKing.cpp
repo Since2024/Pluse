@@ -1,5 +1,6 @@
 #include <iostream>  // Library for printing text to the console
 #include <raylib.h>  // The main raylib library for graphics and windows
+#include <deque>
 
 using namespace std; // Allows us to use names like 'cout' without typing 'std::'
 
@@ -11,13 +12,27 @@ Color darkGreen = {43, 51, 24, 255};    // Dark green for the food
 int cellSize = 30;  // Each square (cell) is 30 pixels wide and 30 pixels high
 int cellCount = 25; // There are 25 squares across and 25 squares down
 
+class Snake{
+    public:
+        deque<Vector2> body = {Vector2{6,9}, Vector2{5,9}, Vector2{4,9}};
+
+        void Draw()
+        {
+            for(int i=0; i< body.size(); i++)
+            {
+                int x = body[i].x;
+                int y = body[i].y;
+                DrawRectangle(x*cellSize, y*cellSize, cellSize, cellSize, darkGreen);
+            }
+        }
+};
 // The Food class: A blueprint for how food behaves and looks
 class Food {
 
     public:
     // Vector2 is a raylib type that stores an X and a Y value
     // Here, we set the food to be at column 5 and row 6 on the grid
-    Vector2 position = {5, 6};
+    Vector2 position;
     Texture2D texture;
 
     Food()
@@ -52,6 +67,8 @@ int main () {
     // Create a 'food' object using our Food class blueprint
     Food food = Food();
 
+    Snake snake = Snake();
+
     // The Main Game Loop: Runs repeatedly until the window is closed
     while(WindowShouldClose() == false)
     {
@@ -63,6 +80,8 @@ int main () {
 
         // 2. Call the Draw function from our food object to paint the food square
         food.Draw();
+
+        snake.Draw();
 
         // Finish drawing and display everything to the user
         EndDrawing();
