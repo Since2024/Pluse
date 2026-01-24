@@ -51,3 +51,7 @@ void temp :: signUp() {
     file<<userName<<"*"<<Email<<"*"<<password<<endl;
     file.close();
 }
+void temp :: login() {
+    string search;
+    cout<<"Enter your username: ";
+}
