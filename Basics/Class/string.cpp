@@ -8,7 +8,7 @@ int main() {
     string prompt("What is your name?: "),
     name,
     line(40, '-'),
-    total = "Hello";
+    total = "Hello ";
 
     cout<<prompt;
     getline(cin, name);
