@@ -1,6 +1,7 @@
 #include <iostream>  // Library for printing text to the console
 #include <raylib.h>  // The main raylib library for graphics and windows
 #include <deque>
+#include <raymath.h>
 
 using namespace std; // Allows us to use names like 'cout' without typing 'std::'
 
@@ -15,16 +16,24 @@ int cellCount = 25; // There are 25 squares across and 25 squares down
 class Snake{
     public:
         deque<Vector2> body = {Vector2{6,9}, Vector2{5,9}, Vector2{4,9}};
+        Vector2 direction = {1,  0};
 
         void Draw()
         {
-            for(int i=0; i< body.size(); i++)
+            for(unsigned int i=0; i< body.size(); i++)
             {
-                int x = body[i].x;
-                int y = body[i].y;
-                DrawRectangle(x*cellSize, y*cellSize, cellSize, cellSize, darkGreen);
+                float x = body[i].x;
+                float y = body[i].y;
+                Rectangle segment = Rectangle{x*cellSize, y*cellSize, (float)cellSize, (float)cellSize};
+                DrawRectangleRounded(segment, 0.5, 6, darkGreen);
             }
         }
+    
+    void Update()
+    {
+        body.pop_back();
+        body.push_front(Vector2Add(body[0], direction));
+    }    
 };
 // The Food class: A blueprint for how food behaves and looks
 class Food {
@@ -39,8 +48,14 @@ class Food {
     {
         Image image = LoadImage("food.png");
         texture = LoadTextureFromImage(image);
-        UnloadImage(image); 
+        UnloadImage(image);
+        position = GenerateRandomPos(); 
     
+    }
+
+    ~Food()
+    {
+        UnloadTexture(texture);
     }
 
     // The function that draws the food on the screen
@@ -49,7 +64,15 @@ class Food {
         /* DrawRectangle(x_pos, y_pos, width, height, color)
            We multiply the grid position (like 5) by the cellSize (30) 
            to find the exact pixel location on the screen. */
-        DrawRectangle(position.x * cellSize, position.y * cellSize, cellSize, cellSize, darkGreen);
+        //DrawRectangle(position.x * cellSize, position.y * cellSize, cellSize, cellSize, darkGreen);
+        DrawTexture(texture, position.x * cellSize,  position.y * cellSize, WHITE);
+    }
+
+    Vector2 GenerateRandomPos()
+    {
+        float x = GetRandomValue(0, cellCount - 1);
+        float y = GetRandomValue(0, cellCount - 1);
+        return Vector2{x,y};
     }
 };
 
@@ -74,6 +97,8 @@ int main () {
     {
         // Setup for drawing on the screen
         BeginDrawing();
+
+        snake.Update();
 
         // 1. Fill the entire background with our light green color
         ClearBackground(green);
