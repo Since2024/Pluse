@@ -11,10 +11,10 @@ int main() {
     int walletA = 10;
     int walletB = 500;
 
-    std::cout << "Before swap: A=" << walletA << ", B=" << walletB << std::endl;
+    std::cout << "Before swap: A=" << walletA << ", B=" << walletB;
 
     swapValues(walletA, walletB);
 
-    std::cout << "After swap: A=" << walletA << ", B=" << walletB << std::endl;
+    std::cout << "After swap: A=" << walletA << ", B=" << walletB;
     return 0;
 }
