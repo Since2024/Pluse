@@ -1,6 +1,5 @@
 #include <iostream>
-#include <graphics.h> // Requires a graphics library configured in your IDE
-
+#include <graphics.h> 
 using namespace std;
 
 // Function to plot the 8-way symmetrical points of the circle
@@ -56,7 +55,6 @@ int main() {
     cout << "Drawing circle..." << endl;
     drawCircleMidpoint(xc, yc, r);
 
-    // Hold the output screen
     getch();
     closegraph();
     return 0;
